@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Multipage Blog Website</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/all.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <nav>
+        <div class="container nav_container">
+            <a href="index.html" class="nav_logo">Traveler</a>
+            <ul class="nav_items">
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li class="nav_profile">
+                    <div class="avatar">
+                        <img src="images/person2.jpg" alt="profile1">
+                    </div>
+                    <ul>
+                        <li><a href="dashboard.html">Dashboard</a></li>
+                        <li><a href="logout.html">Logout</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <button id="open_nav-btn"><i class="fa-solid fa-bars"></i></button>
+            <button id="close_nav-btn"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+    </nav>
+    <!------------------------------- END OF NAV ------------------------------------>
+
+<section class="form_section">
+    <div class="container form_section_container">
+        <h2>Add Category</h2>
+        <!-- <div class="alert_message error">
+            <p>This is an error message!</p>
+        </div>  -->
+        <form action=""  enctype="multipart/form-data">
+            <input type="text" placeholder="Post Title" >
+            <textarea  rows="4" placeholder="Description"></textarea>
+            <button type="submit" class="btn">Add Category</button>
+        </form>
+    </div>
+</section>
+    <!------------------------------- END OF FORM ------------------------------------>
+
+
+<footer>
+    <div class="footer_socials">
+        <a href="https://youtube.com" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+        <a href="https://facebook.com" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+        <a href="https://twitter.com" target="_blank"><i class="fa-brands fa-twitter"></i></a>
+        <a href="https://instagram.com" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+        <a href="https://linkedin.com" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+    </div>
+    <div class="container footer_container">
+        <article>
+            <h4>Categories</h4>
+            <ul>
+                <li><a href="">Art</a></li>
+                <li><a href="">Wild Life</a></li>
+                <li><a href="">Hiking</a></li>
+                <li><a href="">Science & Tech</a></li>
+                <li><a href="">Food</a></li>
+                <li><a href="">Music</a></li>
+            </ul>
+        </article>
+        <article>
+            <h4>Support</h4>
+            <ul>
+                <li><a href="">Online Support</a></li>
+                <li><a href="">Call Numbers</a></li>
+                <li><a href="">Emails</a></li>
+                <li><a href="">Social Support</a></li>
+                <li><a href="">Location</a></li>
+            </ul>
+        </article>
+        <article>
+            <h4>Blog</h4>
+            <ul>
+                <li><a href="">Safety</a></li>
+                <li><a href="">Repair</a></li>
+                <li><a href="">Recent</a></li>
+                <li><a href="">Popular</a></li>
+                <li><a href="">Categories</a></li>
+            </ul>
+        </article>
+        <article>
+            <h4>Permalinks</h4>
+            <ul>
+                <li><a href="">Home</a></li>
+                <li><a href="">Blog</a></li>
+                <li><a href="">About</a></li>
+                <li><a href="">Services</a></li>
+                <li><a href="">Contact</a></li>
+            </ul>
+        </article>
+    </div>
+    <div class="footer_copyright">
+        <small>Copyright &COPY; Traveler USA , Co. All rights reserved.</small>
+    </div>
+</footer>
+
+<script src="js/main.js"></script>
+
+</body>
+
+</html>
