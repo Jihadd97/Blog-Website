@@ -1,1 +1,1 @@
-# Blog-Website
+This project is a responsive, multi-page blog website built from scratch using HTML, CSS, JavaScript, PHP, and MySQL. It demonstrates how to create a dynamic blog website with user registration, login, article management, and more.
