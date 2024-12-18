@@ -88,9 +88,9 @@ h4 {
 }
 
 a {
+    text-decoration: none;
     color: var(--color-white);
     transition: var(--transition);
-    text-decoration: none;
 }
 
 img {
@@ -126,6 +126,7 @@ nav {
     align-items: center;
     justify-content: space-between;
     letter-spacing: 0.1rem;
+    text-transform: uppercase;
 }
 
 .avatar {
@@ -167,6 +168,13 @@ nav {
     flex-direction: column;
     visibility: hidden;
     opacity: 0;
+    transition: var(--transition);
+}
+
+.nav_container a {
+    text-decoration: none;
+    list-style: none;
+    color: var(--color-white);
     transition: var(--transition);
 }
 
@@ -374,10 +382,22 @@ footer ul a:hover {
     width: 100%;
 }
 
-input[type="search"] {
+input,
+textarea,
+select {
+    padding: 0.8rem;
+    background-color: var(--color-gray-900);
+    border: 1px solid #949191;
+    border-radius: var(--card-border-radius-2);
+    color: var(--color-white);
+    font-size: 1rem;
     border: none;
     outline: none;
-    color: var(--color-white);
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: #aea7a7;
 }
 
 /********************** SEARCH BUTTON ***********************/
@@ -385,10 +405,10 @@ input[type="search"] {
 .search_btn {
     width: fit-content;
     position: absolute;
-    right:0;
+    right: 0;
     top: 0;
     bottom: 0;
-    padding: 0.5rem 1.1rem; 
+    padding: 0.5rem 1.1rem;
     color: var(--color-white);
     background-color: var(--color-primary);
     border-radius: var(--card-border-radius-2);
@@ -447,7 +467,8 @@ input[type="search"] {
 .form_section {
     display: grid;
     place-content: center;
-    /* height: 100vh; */
+    margin-top: 5rem;
+
 }
 
 .form_section_container {
@@ -494,7 +515,7 @@ form {
     gap: 0.6rem;
 }
 
-.form_control label{
+.form_control label {
     pointer-events: none;
     /* Disable interaction */
 
@@ -505,40 +526,37 @@ input[type="file"] {
     cursor: pointer;
 }
 
-.form_control.inline{
+.form_control.inline {
     flex-direction: row;
     align-items: center;
 }
 
-input,
-textarea,
-select {
-    padding: 0.8rem;
-    background-color: var(--color-gray-900);
-    border: 1px solid #ccc;
-    border-radius: var(--card-border-radius-2);
-    color: var(--color-white);
-    font-size: 1rem;
-}
-
-input::placeholder {
-    color: #bbb;
-}
-
 .btn {
     width: fit-content;
-    padding: 0.5rem 0.9rem;
-    background-color:var(--color-gray-700) ;
+    padding: 0.5rem 1rem;
+    background-color: var(--color-primary);
     color: var(--color-white);
     font-size: 1rem;
     border: none;
     border-radius: var(--card-border-radius-2);
     cursor: pointer;
+    transition: var(--transition);
+    text-transform: uppercase;
 }
 
-.btn:hover {
+.btn:hover,
+.btn.danger:hover {
     background-color: var(--color-gray-300);
     transition: var(--transition);
+}
+
+.btn.sm {
+    padding: 0.3rem 0.7rem;
+    font-size: 0.8rem;
+}
+
+.btn.danger {
+    background: var(--color-red);
 }
 
 .form_section small {
@@ -556,6 +574,91 @@ input::placeholder {
 .form_section small a:hover {
     text-decoration: underline;
     color: var(--color-white);
+}
+
+/****************** DASHBOARD  *******************/
+.dashboard {
+    margin-top: 6rem;
+}
+
+.dashboard_container {
+    display: grid;
+    grid-template-columns: 19rem auto;
+    gap: 1rem;
+    background: var(--color-gray-900);
+    padding: 2rem 1rem;
+    margin-bottom: 5rem;
+}
+
+.sidebar_toggle {
+    display: none;
+}
+
+.dashboard aside a {
+    background-color: var(--color-primary);
+    display: flex;
+    gap: 1.2rem;
+    align-items: center;
+    padding: 1.2rem;
+    font-size: 1.3rem;
+    transition: var(--transition);
+
+}
+
+.dashboard aside ul li:not(:last-child) {
+    border-bottom: 1px solid var(--color-gray-900);
+
+}
+
+.dashboard aside a:hover {
+    background: var(--color-gray-700);
+    text-decoration: none;
+    list-style: none;
+    color: var(--color-white);
+    /* padding-left: 1.4rem; */
+    transition: var(--transition);
+}
+
+.dashboard aside a.active {
+    background-color: var(--color-gray-700);
+}
+
+.dashboard main {
+    margin-left: 1.5rem;
+}
+
+.dashboard main h2 {
+    margin: 0 0 2rem 0;
+    line-height: 1;
+    letter-spacing: 0.1rem;
+    text-transform: uppercase;
+}
+
+.dashboard main table {
+    width: 100%;
+    text-align: center;
+}
+
+.dashboard main table th {
+    background: var(--color-gray-700);
+    padding: 1rem;
+    color: var(--color-white);
+    letter-spacing: 0.1rem;
+    font-size: 1rem;
+
+}
+
+.dashboard main table td {
+    padding: 1.1rem;
+
+    border-bottom: 1px solid var(--color-gray-200);
+}
+
+.dashboard main table tr:hover td {
+    background: var(--color-gray-700);
+    color: var(--color-white);
+    transition: var(--transition);
+    cursor: text;
 }
 
 /********************** MEDIA QUERIES (MEDIUM DEVICES) *********************************/
@@ -702,6 +805,39 @@ input::placeholder {
         padding: 3rem;
     }
 
+    /********************** DASHBOARD **************************/
+    .dashboard_container {
+        grid-template-columns: 5rem auto;
+        padding: 0;
+        background: transparent;
+    }
+
+    .dashboard aside h5 {
+        display: none;
+    }
+
+    .dashboard aside a {
+        padding: 1.4rem 2.5rem;
+    }
+
+    .dashboard aside i {
+        margin-left: -0.4rem;
+        font-size: 0.9rem;
+    }
+
+    .dashboard aside a:hover {
+        background: var(--color-gray-700);
+        color: var(--color-white);
+    }
+
+    .dashboard main table thead {
+        display: none;
+    }
+
+    .dashboard main table tr:hover td {
+        background:var(--color-gray-900);
+    }
+
 }
 
 /********************** MEDIA QUERIES (SMALL DEVICES) *********************************/
@@ -749,15 +885,70 @@ input::placeholder {
         width: var(--container-width-md);
     }
 
-    /********************** SINGLE POST *********************************/
+    /********************** SINGLE POST *****************/
     .singlePost_container {
         background-color: transparent;
         padding: 0;
 
     }
 
-    /**********************  GENERAL FORM **************************/
+    /**********************  GENERAL FORM ******************/
     .form_section_container {
         padding: 0;
     }
+
+
+    /**********************  DASHBOARD ********************/
+    .dashboard {
+        margin-top: 5rem;
+    }
+
+    .dashboard_container {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    .dashboard main {
+        margin: 0;
+    }
+
+    .dashboard main h2 {
+        margin-top: 1rem;
+    }
+
+    .dashboard aside {
+        position: fixed;
+        box-shadow: 2rem 0 4rem rgba(17, 17, 17, 0.37);
+        left: -100%;
+        top: 3.5rem;
+        height: 100vh;
+        transition: var(--transition);
+        background: var(--color-primary);
+        text-align: justify;
+
+    }
+    .dashboard .sidebar_toggle {
+        display: inline-block;
+        background: var(--color-gray-700);
+        color: var(--color-white);
+        position: fixed;
+        right: 0;
+        bottom: 3rem;
+        z-index: 1;
+        width: 1.5rem;
+        height: 2rem;
+        border-radius: 50% 0 0 50%;
+        font-size: 1rem;
+        cursor: pointer;
+        box-shadow: -1rem 0 2rem rgba(0, 0, 0, 0.4);
+    }
+
+    .dashboard aside a h5 {
+        display: inline-block;
+    }
+
+    #hide_sidebar-btn {
+        display: none;
+    }
+
 }
