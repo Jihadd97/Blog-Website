@@ -33,7 +33,7 @@
 
     --card-border-radius-1: 0.3rem;
     --card-border-radius-2: 0.4rem;
-    --card-border-radius-3: 7rem 3rem;
+    --card-border-radius-3: 5rem 3rem;
     --card-border-radius-4: 2rem;
     --card-border-radius-5: 5rem;
 
@@ -57,6 +57,10 @@ body {
 section {
     margin-top: 3rem;
     width: 100vw;
+}
+
+.section_extra-margin {
+    margin-top: 7rem;
 }
 
 h1,
@@ -96,6 +100,7 @@ a {
 img {
     display: block;
     width: 100%;
+    height: 100%;
     object-fit: cover;
 }
 
@@ -103,7 +108,7 @@ img {
 nav {
     background: var(--color-primary);
     opacity: 0.8;
-    width: 100vw;
+    width: 100%;
     height: 5rem;
     position: fixed;
     top: 0;
@@ -163,7 +168,7 @@ nav {
 .nav_profile ul {
     position: absolute;
     top: 115%;
-    right: -2rem;
+    right: 1rem;
     display: flex;
     flex-direction: column;
     visibility: hidden;
@@ -184,10 +189,9 @@ nav {
     opacity: 1;
 }
 
-
 .nav_profile ul li a {
-    padding: 0.7rem;
-    background: var(--color-gray-900);
+    padding: 0.4rem 0.8rem;
+    background: var(--color-gray-700);
     display: block;
     width: 100%;
 }
@@ -222,6 +226,7 @@ nav {
     overflow: hidden;
     margin-bottom: 1rem;
     cursor: pointer;
+    height: 200px;
 }
 
 .featured .post_thumbnail:hover img,
@@ -237,8 +242,8 @@ nav {
 }
 
 .post_author_avatar {
-    width: 2.5rem;
-    height: 2.5rem;
+    width: 2.6rem;
+    height: 2.6rem;
     border-radius: var(--card-border-radius-2);
     overflow: hidden;
 }
@@ -246,7 +251,8 @@ nav {
 
 /****************** FETURED *******************/
 .featured {
-    margin-top: 8rem;
+    margin-top: 10rem;
+    margin-bottom: 5rem;
 }
 
 .featured .container {
@@ -256,7 +262,7 @@ nav {
 }
 
 .featured .post_thumbnail {
-    height: fit-content;
+    height: 100%;
 }
 
 /****************** POSTS *******************/
@@ -265,6 +271,9 @@ nav {
     grid-template-columns: repeat(3, 1fr);
     gap: 4rem;
     margin-bottom: 5rem;
+}
+.section_extra_margin{
+    margin-top: 9rem;
 }
 
 /****************** CATEGORY BUTTONS *******************/
@@ -503,6 +512,10 @@ textarea::placeholder {
     color: var(--color-green);
 }
 
+.alert_message-lg {
+    text-align: center;
+}
+
 form {
     display: flex;
     flex-direction: column;
@@ -636,7 +649,6 @@ input[type="file"] {
 
 .dashboard main table {
     width: 100%;
-    text-align: center;
 }
 
 .dashboard main table th {
@@ -645,12 +657,10 @@ input[type="file"] {
     color: var(--color-white);
     letter-spacing: 0.1rem;
     font-size: 1rem;
-
 }
 
 .dashboard main table td {
     padding: 1.1rem;
-
     border-bottom: 1px solid var(--color-gray-200);
 }
 
@@ -708,12 +718,14 @@ input[type="file"] {
         align-items: flex-start;
         justify-content: center;
         gap: 0;
+
+    }
+    .nav_items.show{
         display: none;
     }
-
     .nav_items li {
         width: 100%;
-        height: 4.5rem;
+        height: 4rem;
         display: flex;
         align-items: center;
         box-shadow: -2rem 3rem 7rem rgba(0, 0, 0, 0.7);
@@ -764,12 +776,18 @@ input[type="file"] {
     }
 
     .nav_profile {
-        background: var(--color-gray-900);
+        background: var(--color-bg);
+    }
+
+    .nav_profile ul li {
+        height: 100%;
+        width: 100%;
+       
     }
 
     .nav_profile ul {
         top: 100%;
-        width: 100%;
+        right: 50%;
     }
 
     .nav_profile .avatar {
@@ -806,10 +824,13 @@ input[type="file"] {
     }
 
     /********************** DASHBOARD **************************/
+
     .dashboard_container {
         grid-template-columns: 5rem auto;
         padding: 0;
         background: transparent;
+        margin-top: 12rem;
+
     }
 
     .dashboard aside h5 {
@@ -830,12 +851,12 @@ input[type="file"] {
         color: var(--color-white);
     }
 
-    .dashboard main table thead {
-        display: none;
-    }
+    /* .dashboard main table thead {
+        display:
+    } */
 
     .dashboard main table tr:hover td {
-        background:var(--color-gray-900);
+        background: var(--color-gray-900);
     }
 
 }
@@ -849,6 +870,16 @@ input[type="file"] {
     h1 {
         font-size: 2rem;
     }
+
+    /* .nav_profile ul li{
+        padding-bottom: 0;
+    }
+    .nav_profile ul li a {
+        top: 95%;
+        right:40%;
+        padding: 0;
+        width: 100%;
+    } */
 
     .featured {
         margin-top: 7rem;
@@ -927,6 +958,7 @@ input[type="file"] {
         text-align: justify;
 
     }
+
     .dashboard .sidebar_toggle {
         display: inline-block;
         background: var(--color-gray-700);
