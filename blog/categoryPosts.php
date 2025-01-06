@@ -1,184 +1,81 @@
 <?php
 include_once("partials/header.php");
+
+// fetch posts if id is set
+if (isset($_GET['id'])) {
+    $id = $_GET['id'];
+    $query = "SELECT * FROM posts WHERE category_id=$id ORDER BY date_time DESC";
+    $posts = mysqli_query($connection, $query);
+} else {
+    header('location: ' . ROOT_URL . 'blog.php');
+    die();
+}
+
 ?>
 
-   <header class="categoryTitle">
-    <h2>Category Title</h2>
-   </header>
-   
-    <!------------------------------- END OF CATEGORY TITLE ------------------------------------>
+<header class="categoryTitle">
+    <h2><?php
+    // fetch category from categories table using category_id of post
 
+    $category_id = $id;
+    $category_query = "SELECT * FROM categories WHERE id=$id";
+    $category_result = mysqli_query($connection, $category_query);
+    $category = mysqli_fetch_assoc($category_result);
+    echo $category['title'];
+    ?>
+    </h2>
+</header>
+
+<!------------------------------- END OF CATEGORY TITLE ------------------------------------>
 
 <section class="posts">
     <div class="container posts_container">
-        <article class="post">
-            <div class="post_thumbnail">
-                <img src="images/rocks2.jpg" alt="rocks2">
-            </div>
-            <div class="post_info">
-                <a href="categoryPosts.php" class="category_btn">Rocks</a>
-                <h3 class="post_title">
-                    <a href="post.php">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut,
-                        aspernatur?</a>
-                </h3>
-                <p class="post_body">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam illum quasi, vitae ipsa velit
-                    voluptates odit facere perspiciatis possimus nulla quisquam odio harum nam ut ex laboriosam
-                    praesentium. Iste optio praesentium quos placeat qui ipsam nobis natus voluptate beatae fugit?
-                </p>
-                <div class="post_author">
-                    <div class="post_author_avatar">
-                        <img src="images/author2.jpg" alt="author2">
-                    </div>
-                    <div class="author_info">
-                        <h5>By: Emily Claire</h5>
-                        <small>June 13,2022 - 10:34</small>
+        <?php while ($post = mysqli_fetch_assoc($posts)): ?>
+            <article class="post">
+                <div class="post_thumbnail">
+                    <img src="images/<?= $post['thumbnail'] ?>">
+                </div>
+                <div class="post_info">
+        
+                    <h3 class="post_title">
+                        <a href="<?= ROOT_URL ?>post.php?id=<?= $post['id'] ?>"><?=  substr($post['title'],0,50) ?>..</a>
+                    </h3>
+                    <p class="post_body">
+                        <?= substr($post['body'], 0, 150) ?>...
+                    </p>
+
+                    <div class="post_author">
+                        <?php
+                        // fetch author from users table using author_id
+                        $author_id = $post['author_id'];
+                        $author_query = "SELECT * FROM users WHERE id=$author_id";
+                        $author_result = mysqli_query($connection, $author_query);
+                        $author = mysqli_fetch_assoc($author_result);
+                        ?>
+                        <div class="post_author_avatar">
+                            <img src="images/<?= $author['avatar'] ?>" alt="author1">
+                        </div>
+                        <div class="author_info">
+                            <h5>By : <?= "{$author['firstname']} {$author['lastname']}" ?></h5>
+                            <small><?= date("M d, Y - H:i", strtotime($post['date_time'])) ?></small>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </article>
-        <article class="post">
-            <div class="post_thumbnail">
-                <img src="images/city1.jpg" alt="city1">
-            </div>
-            <div class="post_info">
-                <a href="categoryPosts.php" class="category_btn">Churches</a>
-                <h3 class="post_title">
-                    <a href="post.php">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut,
-                        aspernatur?</a>
-                </h3>
-                <p class="post_body">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam illum quasi, vitae ipsa velit
-                    voluptates odit facere perspiciatis possimus nulla quisquam odio harum nam ut ex laboriosam
-                    praesentium. Iste optio praesentium quos placeat qui ipsam nobis natus voluptate beatae fugit?
-                </p>
-                <div class="post_author">
-                    <div class="post_author_avatar">
-                        <img src="images/author3.jpg" alt="author3">
-                    </div>
-                    <div class="author_info">
-                        <h5>By: John Mills</h5>
-                        <small>June 15,2022 - 08:10</small>
-                    </div>
-                </div>
-            </div>
-        </article>
-        <article class="post">
-            <div class="post_thumbnail">
-                <img src="images/hiking1.jpg" alt="hiking">
-            </div>
-            <div class="post_info">
-                <a href="categoryPosts.php" class="category_btn">Mountains</a>
-                <h3 class="post_title">
-                    <a href="post.php">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut,
-                        aspernatur?</a>
-                </h3>
-                <p class="post_body">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam illum quasi, vitae ipsa velit
-                    voluptates odit facere perspiciatis possimus nulla quisquam odio harum nam ut ex laboriosam
-                    praesentium. Iste optio praesentium quos placeat qui ipsam nobis natus voluptate beatae fugit?
-                </p>
-                <div class="post_author">
-                    <div class="post_author_avatar">
-                        <img src="images/author4.jpg" alt="author4">
-                    </div>
-                    <div class="author_info">
-                        <h5>By: Sarah Janes</h5>
-                        <small>July 25,2022 - 11:30</small>
-                    </div>
-                </div>
-            </div>
-        </article>
-        <article class="post">
-            <div class="post_thumbnail">
-                <img src="images/city2.jpg" alt="city2">
-            </div>
-            <div class="post_info">
-                <a href="categoryPosts.php" class="category_btn">Churches</a>
-                <h3 class="post_title">
-                    <a href="post.php">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut,
-                        aspernatur?</a>
-                </h3>
-                <p class="post_body">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam illum quasi, vitae ipsa velit
-                    voluptates odit facere perspiciatis possimus nulla quisquam odio harum nam ut ex laboriosam
-                    praesentium. Iste optio praesentium quos placeat qui ipsam nobis natus voluptate beatae fugit?
-                </p>
-                <div class="post_author">
-                    <div class="post_author_avatar">
-                        <img src="images/author5.jpg" alt="author5">
-                    </div>
-                    <div class="author_info">
-                        <h5>By: Robert Alferdo</h5>
-                        <small>Oct 6,2022 - 07:00</small>
-                    </div>
-                </div>
-            </div>
-        </article>
-        <article class="post">
-            <div class="post_thumbnail">
-                <img src="images/hiking2.jpg" alt="hiking">
-            </div>
-            <div class="post_info">
-                <a href="categoryPosts.php" class="category_btn">Mountains</a>
-                <h3 class="post_title">
-                    <a href="post.php">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut,
-                        aspernatur?</a>
-                </h3>
-                <p class="post_body">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam illum quasi, vitae ipsa velit
-                    voluptates odit facere perspiciatis possimus nulla quisquam odio harum nam ut ex laboriosam
-                    praesentium. Iste optio praesentium quos placeat qui ipsam nobis natus voluptate beatae fugit?
-                </p>
-                <div class="post_author">
-                    <div class="post_author_avatar">
-                        <img src="images/author6.jpg" alt="author6">
-                    </div>
-                    <div class="author_info">
-                        <h5>By: Lily Paul</h5>
-                        <small>Sept 10,2022 - 01:24</small>
-                    </div>
-                </div>
-            </div>
-        </article>
-        <article class="post">
-            <div class="post_thumbnail">
-                <img src="images/rocks3.jpg" alt="rocks3">
-            </div>
-            <div class="post_info">
-                <a href="categoryPosts.php" class="category_btn">Rocks</a>
-                <h3 class="post_title">
-                    <a href="post.php">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut,
-                        aspernatur?</a>
-                </h3>
-                <p class="post_body">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam illum quasi, vitae ipsa velit
-                    voluptates odit facere perspiciatis possimus nulla quisquam odio harum nam ut ex laboriosam
-                    praesentium. Iste optio praesentium quos placeat qui ipsam nobis natus voluptate beatae fugit?
-                </p>
-                <div class="post_author">
-                    <div class="post_author_avatar">
-                        <img src="images/author7.jpg" alt="author7">
-                    </div>
-                    <div class="author_info">
-                        <h5>By: Sam Willy</h5>
-                        <small>Dec 31,2022 - 10:20</small>
-                    </div>
-                </div>
-            </div>
-        </article>
+            </article>
+        <?php endwhile ?>
     </div>
 </section>
 <!------------------------------ END OF POSTS ---------------------------------->
 
 <section class="category_btns">
     <div class="container category_btns_container">
-        <a href="" class="category_btn"> Art</a>
-        <a href="" class="category_btn"> Wild Life</a>
-        <a href="" class="category_btn"> Hiking</a>
-        <a href="" class="category_btn"> Science & Technology</a>
-        <a href="" class="category_btn"> Food</a>
-        <a href="" class="category_btn"> Music</a>
+        <?php
+        $all_categories = "SELECT * FROM categories";
+        $all_categories_result = mysqli_query($connection, $all_categories);
+        ?>
+        <?php while ($category = mysqli_fetch_assoc($all_categories_result)): ?>
+            <a href="<?= ROOT_URL ?>categoryPosts.php?id=<?= $category['id'] ?>" class="category_btn"><?= $category['title'] ?></a>
+        <?php endwhile ?>
     </div>
 </section>
 <!------------------------------ END OF CATEGORY BUTTONS---------------------------------->
